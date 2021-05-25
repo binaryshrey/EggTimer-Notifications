@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="eggTimerViewModel"
+            type="com.example.eggtimer.ui.EggTimerViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,6 +60,8 @@
             android:layout_marginEnd="@dimen/dimen_16"
             android:text="@string/start"
             app:cornerRadius="@dimen/dimen_32"
+            app:StartButtonVisiblity="@{eggTimerViewModel.started}"
+            android:onClick="@{()-> eggTimerViewModel.onStart()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

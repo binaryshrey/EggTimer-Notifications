@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.example.eggtimer.R
 import com.example.eggtimer.databinding.FragmentEggTimerBinding
 
@@ -14,6 +16,7 @@ import com.example.eggtimer.databinding.FragmentEggTimerBinding
 class EggTimerFragment : Fragment() {
 
     private lateinit var binding: FragmentEggTimerBinding
+    private lateinit var viewModel: EggTimerViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,8 +24,9 @@ class EggTimerFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_egg_timer, container, false)
-
-        val egg_array = arrayOf("Test only, better not use it for cooking :)","Soft Boiled","Slightly Firmer","Firm Yolk","Hard Boiled")
+        viewModel = ViewModelProvider(this).get(EggTimerViewModel::class.java)
+        binding.eggTimerViewModel = viewModel
+        binding.lifecycleOwner = this
 
 
         return binding.root
