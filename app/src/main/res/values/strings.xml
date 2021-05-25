@@ -3,4 +3,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="egg">egg</string>
+    <string name="prompt">How do you like your eggs?</string>
+    <string name="none">None</string>
+    <string name="test_only">Test only :)</string>
+    <string name="start">START</string>
+    <string name="preference">Preference</string>
 </resources>
