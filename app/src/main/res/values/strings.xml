@@ -8,4 +8,9 @@
     <string name="test_only">Test only :)</string>
     <string name="start">START</string>
     <string name="preference">Preference</string>
+    <string name="channelID">ChanneID</string>
+    <string name="channelName">ChanneName</string>
+    <string name="notificationTitle">Egg Toast</string>
+    <string name="timer_running">Egg toast Completed</string>
+    <string name="egg_notification_channel_id" translatable="false">egg_channel</string>
 </resources>

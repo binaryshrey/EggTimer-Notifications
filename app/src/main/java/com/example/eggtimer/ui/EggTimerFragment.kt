@@ -1,5 +1,9 @@
 package com.example.eggtimer.ui
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,6 +21,7 @@ class EggTimerFragment : Fragment() {
 
     private lateinit var binding: FragmentEggTimerBinding
     private lateinit var viewModel: EggTimerViewModel
+    private lateinit var viewModelFactory: EggTimerViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,12 +29,34 @@ class EggTimerFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_egg_timer, container, false)
-        viewModel = ViewModelProvider(this).get(EggTimerViewModel::class.java)
+        val application = requireNotNull(activity).application
+        viewModelFactory = EggTimerViewModelFactory(application)
+        viewModel = ViewModelProvider(this,viewModelFactory).get(EggTimerViewModel::class.java)
         binding.eggTimerViewModel = viewModel
+
         binding.lifecycleOwner = this
 
-
+        createChannel(getString(R.string.egg_notification_channel_id),getString(R.string.channelName))
         return binding.root
+    }
+
+    fun createChannel(channelId : String, channelName : String){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val notificationChannel = NotificationChannel(
+                channelName,
+                channelId,
+                NotificationManager.IMPORTANCE_HIGH
+            )
+            notificationChannel.enableLights(true)
+            notificationChannel.enableVibration(true)
+            notificationChannel.lightColor = Color.BLUE
+            notificationChannel.description = "Time for breakfast"
+            val notificationManager = requireActivity().getSystemService(
+                NotificationManager::class.java
+            )
+            notificationManager.createNotificationChannel(notificationChannel)
+        }
+
     }
 
     override fun onResume() {
