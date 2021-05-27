@@ -10,6 +10,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.eggtimer.R
+import com.example.eggtimer.utils.cancelNotifiaction
 import com.example.eggtimer.utils.sendNotification
 import kotlin.concurrent.thread
 
@@ -34,8 +35,8 @@ class EggTimerViewModel(private val app: Application) : AndroidViewModel(app){
             app,
             NotificationManager::class.java
         ) as NotificationManager
+        notificationManager.cancelNotifiaction()
         notificationManager.sendNotification(app.getString(R.string.timer_running), app)
-
         _started.value = CookStatus.STOP
         Log.i("EggTimerViewModel","visible")
 

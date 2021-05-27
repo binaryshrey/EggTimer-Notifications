@@ -33,3 +33,6 @@ fun NotificationManager.sendNotification(messageBody:String, applicationContext 
 
     notify(NOTIFICATION_ID,builder.build())
 }
+fun NotificationManager.cancelNotifiaction(){
+    cancelAll()
+}
